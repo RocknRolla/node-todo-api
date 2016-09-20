@@ -16,7 +16,11 @@ const users = [{
 }, {
     _id: userTwoId,
     email: 'iniesta@fcbarcelona.com',
-    password: 'iniesta8'
+    password: 'iniesta8',
+    tokens: [{
+        access: 'auth',
+        token: jwt.sign({_id: userTwoId, access: 'auth'}, 'abc123').toString()
+    }]
 }];
 
 const populateUsers = (done) => {
@@ -28,4 +32,4 @@ const populateUsers = (done) => {
     }).then(() => done());
 };
 
-module.exports = {users, populateUsers};
+module.exports = {userOneId, userTwoId, users, populateUsers};
